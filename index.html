@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Harshad Patil | Full Stack & AI Developer</title>
+  <meta name="description" content="Harshad Patil – Full Stack & AI Developer specializing in LLMs, RAG pipelines, and scalable web applications." />
+  <meta name="keywords" content="Harshad Patil, Full Stack Developer, AI Developer, RAG, LLM, Portfolio" />
+  <meta name="author" content="Harshad Patil" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Harshad Patil | Full Stack & AI Developer" />
+  <meta property="og:description" content="AI-focused full stack developer portfolio." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+  <nav class="nav container">
+    <div class="logo">Harshad.</div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button id="themeToggle">🌙</button>
+      <button id="hamburger">☰</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero container">
+  <h1>Harshad Patil</h1>
+  <h2>Full Stack & AI Developer</h2>
+  <p>Building intelligent, scalable web applications using LLMs and modern technologies.</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section light-bg reveal">
+  <div class="container">
+    <h3 class="section-title">Skills</h3>
+    <div class="skills-grid">
+      <div class="skill-card">🐍 Python</div>
+      <div class="skill-card">⚡ JavaScript</div>
+      <div class="skill-card">☕ Java</div>
+      <div class="skill-card">⚛️ React</div>
+      <div class="skill-card">🤖 RAG / LLMs</div>
+      <div class="skill-card">📦 Docker</div>
+      <div class="skill-card">☁️ AWS</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section container reveal">
+  <h3 class="section-title">Projects</h3>
+  <div id="github-projects" class="projects-grid"></div>
+</section>
+
+<!-- RESUME EMBED -->
+<section id="resume" class="section light-bg reveal">
+  <div class="container">
+    <h3 class="section-title">Resume</h3>
+    <iframe src="resume.pdf" class="resume-frame"></iframe>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section id="contact" class="section container reveal">
+  <h3 class="section-title">Contact Me</h3>
+
+  <form id="contact-form">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+
+  <p id="form-status"></p>
+</section>
+
+<footer class="footer">
+  © 2025 Harshad Patil
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
