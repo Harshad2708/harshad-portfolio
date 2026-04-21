@@ -1,0 +1,61 @@
+Name: Harshad Manoj Patil
+
+Role: Full Stack Developer, AI Engineer
+
+====================
+SKILLS
+====================
+React
+Node.js
+Python
+MongoDB
+LangChain
+LLMs
+FAISS
+AWS
+Docker
+Java
+C++
+Three.js
+WebGPU
+
+====================
+AI & MACHINE LEARNING
+====================
+LLMs: Uses LLaMA-2 for local AI applications
+RAG: Builds systems to reduce hallucinations
+LangChain: Uses chains and retrievers
+FAISS: Stores embeddings for fast search
+
+====================
+PROJECTS
+====================
+PDF Chat App: Built using RAG, LangChain, FAISS
+Healthcare AI System: AI-powered medical solution
+Fake Website Detector: 92 percent accuracy using Java
+
+====================
+EXPERIENCE
+====================
+Embedded Engineer Intern: Race Tech Pvt Ltd
+Worked on microcontrollers, power systems, hardware testing
+
+====================
+TECHNOLOGIES
+====================
+MERN Stack: MongoDB, Express, React, Node
+REST APIs: Built secure API integrations
+AWS: Cloud deployment and infrastructure
+Docker: Containerized applications
+
+====================
+DATABASES
+====================
+MySQL: Relational database
+MongoDB: NoSQL database
+
+====================
+SPECIAL PROJECTS
+====================
+MES System: Manufacturing Execution System design
+Includes defect tracking and production optimization
