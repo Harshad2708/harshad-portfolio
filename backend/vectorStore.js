@@ -1,63 +1,49 @@
-import { pipeline } from "@xenova/transformers";
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
-let embedder;
-let vectors = [];
-let texts = [];
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Load model once
+let resumeChunks = [];
+
+// Load and chunk resume.txt on startup
 export const initVectorStore = async () => {
-  embedder = await pipeline("feature-extraction", "Xenova/all-MiniLM-L6-v2");
-
-  const data = fs.readFileSync("./data/resume.txt", "utf-8");
-
-  texts = data.split("\n").filter(line => line.trim() !== "");
-
-  for (let text of texts) {
-    const embedding = await embedder(text, { pooling: "mean", normalize: true });
-    vectors.push(embedding.data);
+  try {
+    const filePath = path.join(__dirname, "data", "resume.txt");
+    const data = fs.readFileSync(filePath, "utf-8");
+    resumeChunks = data
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0 && !line.startsWith("="));
+    console.log(`✅ Resume loaded — ${resumeChunks.length} lines indexed.`);
+  } catch (err) {
+    console.error("⚠️ Could not load resume.txt:", err.message);
+    resumeChunks = [];
   }
-
-  console.log("✅ Vector DB ready");
 };
 
-// Cosine similarity
-const similarity = (a, b) => {
-  let dot = 0;
-  let normA = 0;
-  let normB = 0;
-
-  for (let i = 0; i < a.length; i++) {
-    dot += a[i] * b[i];
-    normA += a[i] * a[i];
-    normB += b[i] * b[i];
-  }
-
-  return dot / (Math.sqrt(normA) * Math.sqrt(normB));
-};
-
-// Search function
+// Simple keyword search — no native dependencies needed
 export const searchVector = async (query) => {
-  const queryEmbedding = await embedder(query, {
-    pooling: "mean",
-    normalize: true,
-  });
+  if (resumeChunks.length === 0) return null;
 
-  let bestScore = -1;
-  let bestText = "";
+  const queryWords = query.toLowerCase().split(/\s+/);
 
-  for (let i = 0; i < vectors.length; i++) {
-    const score = similarity(queryEmbedding.data, vectors[i]);
+  let bestScore = 0;
+  let bestChunk = null;
 
+  for (const chunk of resumeChunks) {
+    const chunkLower = chunk.toLowerCase();
+    let score = 0;
+    for (const word of queryWords) {
+      if (word.length > 2 && chunkLower.includes(word)) {
+        score++;
+      }
+    }
     if (score > bestScore) {
       bestScore = score;
-      bestText = texts[i];
+      bestChunk = chunk;
     }
   }
 
-  if (bestScore > 0.5) {
-  return bestText;
-} else {
-  return null;
-}
+  return bestScore > 0 ? bestChunk : null;
 };
