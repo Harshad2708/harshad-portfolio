@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export const connectDB = async () => {
   try {
     const MONGO_URI =
-      "mongodb+srv://harshadpatil841:harshad123@cluster0.p6n7z9y.mongodb.net/chatDB?retryWrites=true&w=majority";
+      process.env.MONGODB_URI || "mongodb+srv://harshadpatil841:harshad123@cluster0.p6n7z9y.mongodb.net/chatDB?retryWrites=true&w=majority";
 
     await mongoose.connect(MONGO_URI);
 
