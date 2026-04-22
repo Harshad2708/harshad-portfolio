@@ -18,7 +18,12 @@ app.use(cors());
 app.use(express.json());
 
 const API_KEY = process.env.GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(API_KEY);
+if (!API_KEY) {
+  console.error("🚨 CRITICAL: GEMINI_API_KEY is not set! AI responses will fail.");
+} else {
+  console.log("✅ Gemini API Key loaded:", API_KEY.substring(0, 8) + "...");
+}
+const genAI = new GoogleGenerativeAI(API_KEY || "");
 
 // ==============================
 // 🤖 GEMINI AI HELPER
@@ -26,8 +31,8 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 const callGemini = async (userMessage, history = [], contextInfo = null) => {
   try {
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-2.5-flash",
-      generationConfig: { temperature: 0.6 } 
+      model: "gemini-1.5-flash",
+      generationConfig: { temperature: 0.7 } 
     });
     
     let prompt = `You are the highly intelligent, mindful, and articulate AI manifestation of Harshad Patil.
@@ -63,9 +68,13 @@ AI:`;
     const result = await model.generateContent(prompt);
     const response = await result.response;
     let output = response.text().trim();
+    console.log("✅ Gemini responded successfully, length:", output.length);
     return output || null;
   } catch (error) {
-    console.error("Gemini API Error:", error);
+    console.error("🚨 Gemini API Error Details:");
+    console.error("  Status:", error?.status);
+    console.error("  Message:", error?.message);
+    console.error("  Error JSON:", JSON.stringify(error, null, 2));
     return null;
   }
 };
@@ -89,10 +98,15 @@ app.post("/chat", async (req, res) => {
     const relevantData = await searchVector(userMessage);
 
     // 3. GENERATE SMART REPLY WITH GEMINI
+    console.log(`📨 User asked: "${userMessage}" | Session: ${sessionId}`);
     const aiReply = await callGemini(userMessage, history, relevantData);
     
+    if (!aiReply) {
+      console.error("🚨 Gemini returned null — check GEMINI_API_KEY and model availability on Render logs!");
+    }
+
     // Helpful fallback if the AI model is offline or loading
-    const finalReply = aiReply || "I'm still learning about Harshad's world! You can see his full 'Arsenal' and projects like the PDF Chat App right here on this page.";
+    const finalReply = aiReply || "I'm still warming up! The AI brain is initializing. Please try again in a moment. 🚀";
     
     await Chat.create({ sessionId, role: "user", message: userMessage });
     await Chat.create({ sessionId, role: "ai", message: finalReply });
@@ -114,8 +128,9 @@ const startServer = async () => {
     await connectDB();
     // Initialize the Vector Store (loads resume.txt and creates embeddings)
     await initVectorStore();
-    app.listen(5000, () => {
-      console.log("🚀 Server running on http://localhost:5000");
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on http://localhost:${PORT}`);
     });
   } catch (error) {
     console.error("Critical Startup Error:", error);
