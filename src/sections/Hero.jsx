@@ -71,7 +71,7 @@ export default function Hero() {
         {/* Live Notification Pill */}
         <div 
           className="glass flex-center" 
-          style={{ position: 'absolute', top: '-1.5rem', padding: '0.5rem 1rem', borderRadius: '9999px', gap: '0.5rem', backgroundColor: 'rgba(10,10,10,0.8)' }}
+          style={{ position: 'absolute', top: '-3rem', padding: '0.5rem 1rem', borderRadius: '9999px', gap: '0.5rem', backgroundColor: 'rgba(10,10,10,0.8)' }}
         >
           <div className="animate-breathe" style={{ width: '8px', height: '8px', backgroundColor: '#4ade80', borderRadius: '50%' }}></div>
           <span style={{ color: '#4ade80', fontWeight: 800, fontSize: '10px', letterSpacing: '0.1em' }}>LIVE</span>
