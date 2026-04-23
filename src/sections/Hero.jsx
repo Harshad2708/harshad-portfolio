@@ -30,8 +30,12 @@ export default function Hero() {
         style={{ position: 'absolute', top: '25%', left: '10%', padding: '1rem', width: '220px', zIndex: 10, filter: 'grayscale(100%)', transition: 'all 0.7s ease' }}
         whileHover={{ scale: 1.05, filter: 'grayscale(0%)', boxShadow: '0 0 60px rgba(167, 139, 113, 0.3)' }}
       >
-        <div style={{ height: '120px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '12px', marginBottom: '0.5rem' }}></div>
-        <p className="tracking-wide-upper text-gray">Full Stack Logic</p>
+        <img 
+          src="/full-stack.png" 
+          alt="Full Stack Concept" 
+          style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '12px', marginBottom: '0.5rem', display: 'block' }} 
+        />
+        <p className="tracking-wide-upper text-gray text-center" style={{ marginTop: '0.5rem' }}>Full Stack Logic</p>
       </motion.div>
 
       <motion.div 
@@ -39,8 +43,12 @@ export default function Hero() {
         style={{ position: 'absolute', top: '35%', right: '8%', padding: '1rem', width: '250px', zIndex: 10, filter: 'grayscale(100%)', transition: 'all 0.7s ease' }}
         whileHover={{ scale: 1.05, filter: 'grayscale(0%)', boxShadow: '0 0 60px rgba(167, 139, 113, 0.3)' }}
       >
-        <div style={{ height: '140px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '12px', marginBottom: '0.5rem' }}></div>
-        <p className="tracking-wide-upper text-gray">AI Engineering</p>
+        <img 
+          src="/ai-eng.png" 
+          alt="AI Engineering Concept" 
+          style={{ width: '100%', height: '140px', objectFit: 'cover', borderRadius: '12px', marginBottom: '0.5rem', display: 'block' }} 
+        />
+        <p className="tracking-wide-upper text-gray text-center" style={{ marginTop: '0.5rem' }}>AI Engineering</p>
       </motion.div>
 
       {/* Central Interactive Node */}
