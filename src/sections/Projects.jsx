@@ -56,7 +56,8 @@ export default function Projects() {
       fullDesc: "An advanced Retrieval-Augmented Generation (RAG) application that allows users to converse with PDF documents.\n\nHow it works: The system extracts text from uploaded PDFs, chunks it, and generates vector embeddings using a Hugging Face model. These embeddings are stored in a Vector DB. When a user asks a question, the app retrieves the most relevant chunks via semantic search and feeds them as context to the LLaMA-2 LLM, which synthesizes a precise, hallucination-free answer.",
       stack: ["React", "Python", "LLaMA-2", "Langchain", "Vector DB"],
       github: "https://github.com/Harshad2708/PDF_Chatbot_translator",
-      live: "https://example.com"
+      live: "https://example.com",
+      demoImage: "/pdf_chat_demo.png"
     },
     { 
       title: "Healthcare AI", 
@@ -64,7 +65,8 @@ export default function Projects() {
       fullDesc: "A comprehensive machine learning system designed for predictive disease modeling.\n\nHow it works: The AI is trained on thousands of anonymized patient records using Scikit-Learn and TensorFlow to recognize complex patterns in vitals and lifestyle factors. The React frontend provides a secure dashboard where doctors can input a patient's current vitals, which are sent via a Flask API to the trained model for an instant cardiovascular risk assessment.",
       stack: ["Python", "TensorFlow", "React", "Flask", "Pandas"],
       github: "https://github.com",
-      live: "https://example.com"
+      live: "https://example.com",
+      demoImage: "/healthcare_ai_demo.png"
     },
     { 
       title: "Fake Website Detector", 
@@ -72,7 +74,8 @@ export default function Projects() {
       fullDesc: "A security tool built to protect users from malicious phishing attempts.\n\nHow it works: The application scrapes the target URL and extracts key features such as URL length, domain age, presence of '@' symbols, and SSL certificate validity. These features are passed into an optimized Random Forest classifier which compares the signature against a massive dataset of known threats, flagging malicious sites in milliseconds.",
       stack: ["Node.js", "Express", "MongoDB", "React", "Scikit-Learn"],
       github: "https://github.com/Harshad2708/URL-Detection-System",
-      live: "https://example.com"
+      live: "https://example.com",
+      demoImage: "/fake_website_detector_demo.png"
     },
   ];
 
@@ -114,6 +117,12 @@ export default function Projects() {
               </button>
 
               <h3 className="heading-lg playfair italic" style={{ marginBottom: '1rem' }}>{selected.title}</h3>
+              
+              {selected.demoImage && (
+                <div style={{ width: '100%', marginBottom: '2rem', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--glass-border)' }}>
+                  <img src={selected.demoImage} alt={`${selected.title} Demo`} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                </div>
+              )}
               
               <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
                 {selected.stack.map((tech, i) => (
