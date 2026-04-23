@@ -1,7 +1,17 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Code, Briefcase, MessageSquare, ArrowRight } from "lucide-react";
 
 export default function Contact() {
+  const [message, setMessage] = useState('');
+
+  const handleSend = () => {
+    if (!message.trim()) return;
+    const mailtoUrl = `mailto:harshadpatil841@gmail.com?subject=New message from Portfolio&body=${encodeURIComponent(message)}`;
+    window.location.href = mailtoUrl;
+    setMessage('');
+  };
+
   return (
     <section id="contact" className="section-container" style={{ paddingBottom: '4rem' }}>
       
@@ -57,10 +67,13 @@ export default function Contact() {
               Have an idea or a project in mind? Reach out directly to <span className="text-gold">harshadpatil841@gmail.com</span>
             </p>
 
-            {/* Input Field simulating the requested 'Digest' search bar */}
+            {/* Functional Contact Input */}
             <div style={{ display: 'flex', gap: '0.5rem', position: 'relative', maxWidth: '400px' }}>
               <input 
-                type="email" 
+                type="text" 
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="Send me a message..." 
                 style={{ 
                   width: '100%', 
@@ -75,16 +88,18 @@ export default function Contact() {
                 }} 
               />
               <button 
+                onClick={handleSend}
                 className="flex-center btn-primary"
                 style={{ 
                   position: 'absolute', 
                   right: '0.5rem', 
                   top: '0.5rem', 
                   bottom: '0.5rem',
-                  width: 'calc(100% - 1rem)', // Keep small for circular effect
+                  width: 'calc(100% - 1rem)',
                   maxWidth: '3rem',
                   padding: '0',
-                  borderRadius: '50%'
+                  borderRadius: '50%',
+                  cursor: 'pointer'
                 }}
               >
                 <ArrowRight size={18} />
