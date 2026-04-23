@@ -31,40 +31,38 @@ export default function About() {
           <div 
             style={{
               width: '100%', height: '100%',
-              background: 'linear-gradient(135deg, rgba(20,20,20,0.9), rgba(40,40,40,0.9))',
               position: 'absolute', inset: 0,
-              display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
-              color: 'var(--text-primary)',
-              border: '1px solid var(--glass-border)',
+              backgroundColor: '#fff',
               borderRadius: '24px',
-              padding: '2rem',
-              textAlign: 'center'
+              overflow: 'hidden'
             }}
             className="resume-card-hover"
           >
-            {/* Visual representation of a document */}
-            <div style={{
-              width: '80px', height: '100px',
-              border: '2px solid var(--accent-gold)',
-              borderRadius: '8px',
-              display: 'flex', flexDirection: 'column',
-              padding: '10px', gap: '8px',
-              marginBottom: '2rem',
-              boxShadow: '0 0 20px rgba(167, 139, 113, 0.2)',
-              backgroundColor: 'rgba(167, 139, 113, 0.05)'
-            }}>
-              <div style={{ height: '4px', background: 'var(--accent-gold)', width: '100%', borderRadius: '2px' }}></div>
-              <div style={{ height: '4px', background: 'var(--accent-gold)', width: '80%', borderRadius: '2px' }}></div>
-              <div style={{ height: '4px', background: 'var(--accent-gold)', width: '90%', borderRadius: '2px' }}></div>
-              <div style={{ height: '4px', background: 'var(--accent-gold)', width: '60%', borderRadius: '2px' }}></div>
-              <div style={{ height: '4px', background: 'var(--accent-gold)', width: '100%', borderRadius: '2px', marginTop: 'auto' }}></div>
-            </div>
-
-            <h3 className="playfair italic text-gold" style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>Harshad's Resume</h3>
-            <p className="text-gray" style={{ fontSize: '0.9rem', marginBottom: '1.5rem' }}>Click to view & download</p>
+            {/* PDF Preview */}
+            <iframe 
+              src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+              style={{
+                width: '100%', height: '100%',
+                border: 'none',
+                pointerEvents: 'none' // Crucial: lets clicks pass through to the <a> tag
+              }}
+              title="Resume Preview"
+            />
             
-            <div className="btn-primary" style={{ padding: '0.5rem 1.5rem', fontSize: '0.9rem', pointerEvents: 'none' }}>
-              Open PDF
+            {/* Dark overlay with text and button at the bottom */}
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.2) 40%, transparent 100%)',
+              display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center',
+              padding: '2rem',
+              pointerEvents: 'none'
+            }}>
+              <h3 className="playfair italic text-gold" style={{ fontSize: '1.5rem', marginBottom: '0.5rem', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>Harshad's Resume</h3>
+              <p className="text-gray" style={{ fontSize: '0.9rem', marginBottom: '1.5rem', textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>Click to view & download</p>
+              
+              <div className="btn-primary" style={{ padding: '0.5rem 1.5rem', fontSize: '0.9rem', boxShadow: '0 4px 15px rgba(0,0,0,0.5)' }}>
+                Open PDF
+              </div>
             </div>
           </div>
         </motion.a>
