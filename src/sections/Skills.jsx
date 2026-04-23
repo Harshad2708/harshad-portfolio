@@ -28,8 +28,8 @@ export default function Skills() {
             viewport={{ once: true }}
             transition={{ delay: i * 0.1, duration: 0.5 }}
             className="glass card feature-card"
-            whileHover={{ borderColor: 'rgba(167, 139, 113, 0.5)' }}
-            style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}
+            whileHover={{ scale: 1.05, y: -5, borderColor: 'rgba(167, 139, 113, 0.5)', boxShadow: '0 10px 30px rgba(167, 139, 113, 0.15)' }}
+            style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', transition: 'box-shadow 0.3s ease' }}
           >
             <motion.div 
               className="icon-container flex-center"
