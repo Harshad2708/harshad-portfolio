@@ -27,7 +27,7 @@ export default function Hero() {
       {/* Satellite Cards */}
       <motion.div 
         className="glass"
-        style={{ position: 'absolute', top: '25%', left: '10%', padding: '1rem', width: '220px', zIndex: 10, filter: 'grayscale(100%)' }}
+        style={{ position: 'absolute', top: '25%', left: '10%', padding: '1rem', width: '220px', zIndex: 10, filter: 'grayscale(100%)', transition: 'all 0.7s ease' }}
         animate={{ y: [0, -15, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         whileHover={{ scale: 1.05, filter: 'grayscale(0%)', boxShadow: '0 0 60px rgba(167, 139, 113, 0.3)', transition: { duration: 0.3 } }}
@@ -42,7 +42,7 @@ export default function Hero() {
 
       <motion.div 
         className="glass"
-        style={{ position: 'absolute', top: '35%', right: '8%', padding: '1rem', width: '250px', zIndex: 10, filter: 'grayscale(100%)' }}
+        style={{ position: 'absolute', top: '35%', right: '8%', padding: '1rem', width: '250px', zIndex: 10, filter: 'grayscale(100%)', transition: 'all 0.7s ease' }}
         animate={{ y: [0, -20, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         whileHover={{ scale: 1.05, filter: 'grayscale(0%)', boxShadow: '0 0 60px rgba(167, 139, 113, 0.3)', transition: { duration: 0.3 } }}
