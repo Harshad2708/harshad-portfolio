@@ -6,29 +6,68 @@ export default function About() {
       
       <div className="grid-2" style={{ alignItems: 'center', gap: '4rem', maxWidth: '1000px' }}>
         
-        {/* Left: Grayscale Image transition to color */}
-        <motion.div 
+        {/* Left: Resume Document Link */}
+        <motion.a 
+          href="/resume.pdf" 
+          target="_blank" 
+          rel="noopener noreferrer"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          style={{ width: '100%', aspectRatio: '4/5', position: 'relative', borderRadius: '24px', overflow: 'hidden' }}
+          style={{ 
+            width: '100%', 
+            aspectRatio: '4/5', 
+            position: 'relative', 
+            borderRadius: '24px', 
+            overflow: 'hidden',
+            display: 'block',
+            textDecoration: 'none',
+            cursor: 'pointer'
+          }}
+          whileHover={{ scale: 1.02, boxShadow: '0 0 30px rgba(167, 139, 113, 0.2)' }}
+          whileTap={{ scale: 0.98 }}
         >
-          {/* Placeholder for the image. Assuming user has an image, or we use a gradient placeholder */}
           <div 
             style={{
               width: '100%', height: '100%',
-              background: 'linear-gradient(45deg, #1a1a1a, #2a2a2a)',
+              background: 'linear-gradient(135deg, rgba(20,20,20,0.9), rgba(40,40,40,0.9))',
               position: 'absolute', inset: 0,
-              display: 'flex', justifyContent: 'center', alignItems: 'center',
-              color: 'var(--text-secondary)'
+              display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+              color: 'var(--text-primary)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '24px',
+              padding: '2rem',
+              textAlign: 'center'
             }}
-            className="grayscale-to-color"
+            className="resume-card-hover"
           >
-            [Harshad Portrait Image]
+            {/* Visual representation of a document */}
+            <div style={{
+              width: '80px', height: '100px',
+              border: '2px solid var(--accent-gold)',
+              borderRadius: '8px',
+              display: 'flex', flexDirection: 'column',
+              padding: '10px', gap: '8px',
+              marginBottom: '2rem',
+              boxShadow: '0 0 20px rgba(167, 139, 113, 0.2)',
+              backgroundColor: 'rgba(167, 139, 113, 0.05)'
+            }}>
+              <div style={{ height: '4px', background: 'var(--accent-gold)', width: '100%', borderRadius: '2px' }}></div>
+              <div style={{ height: '4px', background: 'var(--accent-gold)', width: '80%', borderRadius: '2px' }}></div>
+              <div style={{ height: '4px', background: 'var(--accent-gold)', width: '90%', borderRadius: '2px' }}></div>
+              <div style={{ height: '4px', background: 'var(--accent-gold)', width: '60%', borderRadius: '2px' }}></div>
+              <div style={{ height: '4px', background: 'var(--accent-gold)', width: '100%', borderRadius: '2px', marginTop: 'auto' }}></div>
+            </div>
+
+            <h3 className="playfair italic text-gold" style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>Harshad's Resume</h3>
+            <p className="text-gray" style={{ fontSize: '0.9rem', marginBottom: '1.5rem' }}>Click to view & download</p>
+            
+            <div className="btn-primary" style={{ padding: '0.5rem 1.5rem', fontSize: '0.9rem', pointerEvents: 'none' }}>
+              Open PDF
+            </div>
           </div>
-          <div style={{ position: 'absolute', inset: 0, border: '1px solid var(--glass-border)', borderRadius: '24px' }}></div>
-        </motion.div>
+        </motion.a>
 
         {/* Right: Text and Role */}
         <motion.div

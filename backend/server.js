@@ -105,8 +105,15 @@ app.post("/chat", async (req, res) => {
       console.error("🚨 Gemini returned null — check GEMINI_API_KEY and model availability on Render logs!");
     }
 
-    // Helpful fallback if the AI model is offline or loading
-    const finalReply = aiReply || "I'm still warming up! The AI brain is initializing. Please try again in a moment. 🚀";
+    // Professional fallback if the AI model is offline or API key fails
+    let finalReply = aiReply;
+    if (!finalReply) {
+      if (relevantData) {
+        finalReply = `*I am currently experiencing high server traffic, but here is what I found in Harshad's resume:*\n\n${relevantData}\n\n**For more details, please reach out to Harshad directly at harshadpatil841@gmail.com!**`;
+      } else {
+        finalReply = "I am currently experiencing high server traffic, but I can confidently say Harshad is a phenomenal Full-Stack and AI Engineer! 🚀\n\n**Please reach out to him directly at harshadpatil841@gmail.com so you can connect.**";
+      }
+    }
     
     await Chat.create({ sessionId, role: "user", message: userMessage });
     await Chat.create({ sessionId, role: "ai", message: finalReply });
